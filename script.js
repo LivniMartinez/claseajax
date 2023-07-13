@@ -32,7 +32,7 @@ const consultarPokemon = async (e) => {
             document.getElementById('nombrePokemon').innerText = data.name
             document.getElementById('pesoPokemon').innerText = data.weight
             document.getElementById('tipoPokemon').innerText = data.types[0].type.name
-            document.getElementById('imagenPokemon').innerText = data.sprites.front_default
+            document.getElementById('imagenPokemon').src = data.sprites.front_default
             document.getElementById('estado').innerText = 'Pokemon encontrado'
             
         }else{
