@@ -17,22 +17,34 @@ const consultarPokemon = async (e) => {
     const config = {
         method : 'GET'
     }
+
+    //CONSULTAR A LA API
+    document.getElementById('estado').innerText = 'Buscando pokemon...'
     try {
         const respuesta = await fetch(url, config);
-        const data = await respuesta.json()
-        console.log(data.nombre)
-        console.log(data.weight)
-        console.log(data.types[0])
-        
         if(respuesta.status == 200){
+            const data = await respuesta.json()
+            console.log(data.name)
+            console.log(data.weight)
+            console.log(data.types[0].type.name)
+            console.log(data.sprites.front_default)
+
+            document.getElementById('nombrePokemon').innerText = data.name
+            document.getElementById('pesoPokemon').innerText = data.weight
+            document.getElementById('tipoPokemon').innerText = data.types[0].type.name
+            document.getElementById('imagenPokemon').innerText = data.sprites.front_default
+            document.getElementById('estado').innerText = 'Pokemon encontrado'
             
         }else{
-            alert('error en la consulta')
+            // alert('error en la consulta')
+            document.getElementById ('estado').innerText = 'Pokemon no encontrado'
         }
-        console.log(respuesta);
+        // console.log(respuesta);
     }catch(error) {
         console.log(error)
     }
 }
 
 formulario.addEventListener('submit', consultarPokemon)
+
+
